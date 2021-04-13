@@ -16,11 +16,12 @@ jobs:
       run: echo "::set-output name=dir::$(composer config cache-file-dir)"
       
     - name: Cache Composer Dependencies 
-      uses: actions/cache@v1
+      uses: actions/cache@v2
       with:
         path: ${{ steps.composer-cache.ouputs.dir }}
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: ${{ runner.os }}-composer-
+        restore-keys: |
+          ${{ runner.os }}-composer-
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
