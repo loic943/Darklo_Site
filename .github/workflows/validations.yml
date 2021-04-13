@@ -6,19 +6,22 @@ jobs:
     name: PSR-12 Code style
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
 
     - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      run: composer validate
 
-    - name: Cache Composer packages
+    - name: Get Composer Cache Directory
       id: composer-cache
-      uses: actions/cache@v2
+      run: echo "::set-output name=dir::$(composer config cache-file-dir)"
+      
+    - name: Cache Composer Dependency 
+      uses: actions/cache@v1
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        path: ${{ steps.composer-cache.ouputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
-          ${{ runner.os }}-php-
+          ${{ runner.os }}-composer-
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
