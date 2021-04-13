@@ -6,7 +6,13 @@ jobs:
     name: PSR-12 Code style
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with: 
+          php-version: '8.0.3'
+          tools: phpstan, composer
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -31,6 +37,9 @@ jobs:
       
     - name: Validate PSR-12 Code Style
       run: ~/.composer/vendor/bin/phpcs
+
+    - name: Run PHPStan
+      run: phpstan analyse src
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
