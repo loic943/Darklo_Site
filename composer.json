@@ -1,4 +1,6 @@
 {
+    "name": "Darklo_Site",
+    "description": "Site Symfony 5",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "dev",
