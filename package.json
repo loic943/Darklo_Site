@@ -3,7 +3,11 @@
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
         "autoprefixer": "^10.2.5",
+        "browser-sync": "^2.26.14",
         "core-js": "^3.0.0",
+        "del": "6.0.0",
+        "gulp": "4.0.2",
+        "merge-stream": "2.0.0",
         "postcss-loader": "^5.2.0",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.32.8",
@@ -21,6 +25,8 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.9.2",
-        "bootstrap": "^5.0.0-beta3"
+        "bootstrap": "^5.0.0-beta3",
+        "jquery": "3.5.1",
+        "popper.js": "^1.16.1"
     }
 }
