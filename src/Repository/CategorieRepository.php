@@ -30,7 +30,6 @@ class CategorieRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-   
 
     /*
     public function findOneBySomeField($value): ?Categorie
