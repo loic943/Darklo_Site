@@ -18,7 +18,7 @@ class HomeController extends AbstractController
         NewsRepository $news,
         Request $requete,
         PaginatorInterface $paginator
-    ):  Response {
+    ): Response {
         $data = $news->findAll();
 
         $pagination = $paginator->paginate(
