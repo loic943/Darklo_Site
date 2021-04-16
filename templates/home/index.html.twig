@@ -10,45 +10,23 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8">
         <h1 class="my-4">Bienvenue sur le blog de D@rklo</h1>
-        <!-- Blog Post -->
+
+        <!-- BDD Posts -->
+        {% for post in posts %}
         <div class="card mb-4">
-          <img class="card-img-top" src="https://loremflickr.com/750/300?random=1" alt="Card image cap">
+          <img class="card-img-top" src="{{ post.image }}" alt="Card image cap">
           <div class="card-body">
-            <h2 class="card-title">Titre</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="{{ path('news') }}" class="btn btn-primary">Voir Plus &rarr;</a>
+            <h2 class="card-title"> {{ post.titre }} </h2>
+            <p class="card-text"> {{ post.contenu|u.truncate (100, '...', false ) }} </p>
+            <a href="/news/{{ post.slug }}/{{ post.id }}" class="btn btn-primary">Voir Plus &rarr;</a>
           </div>
           <div class="card-footer text-muted">
-            Posté le 14 avril 2021 par
-            <a href="#">Darklo</a>
+            Posté le {{ post.createdAt|date('d/m/Y') }} par
+            <a href="#"> {{ post.user.pseudo }}</a>
           </div>
         </div>
-        <!-- Blog Post -->
-        <div class="card mb-4">
-          <img class="card-img-top" src="https://loremflickr.com/750/300?random=2" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">Titre</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="{{ path('news') }}" class="btn btn-primary">Voir Plus &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posté le 14 avril 2021 par
-            <a href="#">Darklo</a>
-          </div>
-        </div>
-        <!-- Blog Post -->
-        <div class="card mb-4">
-          <img class="card-img-top" src="https://loremflickr.com/750/300?random=3" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">Titre</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="{{ path('news') }}" class="btn btn-primary">Voir Plus &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posté le 14 avril 2021 par
-            <a href="#">Darklo</a>
-          </div>
-        </div>
+        {% endfor %}
+
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">

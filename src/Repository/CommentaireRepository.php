@@ -19,22 +19,19 @@ class CommentaireRepository extends ServiceEntityRepository
         parent::__construct($registry, Commentaire::class);
     }
 
-    // /**
-    //  * @return Commentaire[] Returns an array of Commentaire objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Commentaire[] Returns an array of Commentaire objects
+    */
+    public function recupAllCommentaires($post_id)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('c.news = :val')
+            ->setParameter('val', $post_id)
+            ->orderBy('c.id', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Commentaire
