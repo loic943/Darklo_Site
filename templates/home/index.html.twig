@@ -1,42 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
-{% block body %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+  {% block body %}
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+        <h1 class="my-4">Bienvenue sur le blog de D@rklo</h1>
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <img class="card-img-top" src="https://loremflickr.com/750/300?random=1" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">Titre</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <a href="{{ path('news') }}" class="btn btn-primary">Voir Plus &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posté le 14 avril 2021 par
+            <a href="#">Darklo</a>
+          </div>
+        </div>
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <img class="card-img-top" src="https://loremflickr.com/750/300?random=2" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">Titre</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <a href="{{ path('news') }}" class="btn btn-primary">Voir Plus &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posté le 14 avril 2021 par
+            <a href="#">Darklo</a>
+          </div>
+        </div>
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <img class="card-img-top" src="https://loremflickr.com/750/300?random=3" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">Titre</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <a href="{{ path('news') }}" class="btn btn-primary">Voir Plus &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posté le 14 avril 2021 par
+            <a href="#">Darklo</a>
+          </div>
+        </div>
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+          <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+          </li>
+        </ul>
+      </div>
+      {% block sidebar %} 
+        {{ parent() }}
+      {% endblock %}
     </div>
+    <!-- /.row -->
   </div>
-</nav>
+  <!-- /.container -->
 {% endblock %}

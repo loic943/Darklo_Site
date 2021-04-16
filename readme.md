@@ -12,6 +12,7 @@ Test de site internet avec Symfony 5
 * Symfony CLI
 * Docker
 * Docker-compose
+* Node.js et npm
 
 Vérification des pré-requis pour Symfony
 
@@ -22,6 +23,9 @@ symfony check:requirements
 ### Lancement de l'environnement de dev
 
 ```bash
+composer install
+npm install
+npm run buid
 docker-compose up -d
 symfony serve -d
 ```
