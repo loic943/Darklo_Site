@@ -19,7 +19,11 @@
             <a class="nav-link" href="#">Services</a>
           </li>
         </ul>
-        <button class="btn btn-outline-light ms-auto">Se Connecter</button>
+        {% if app.user %}
+          <a class="btn btn-outline-light ms-auto" href="{{ path('app_logout') }}">Se Déconnecter</a>
+        {% else %}
+          <a class="btn btn-outline-light ms-auto" href="{{ path('app_login') }}">Se Connecter</a>
+        {% endif %}
       </div>
     </div>
   </nav>
