@@ -30,7 +30,12 @@ docker-compose up -d
 symfony serve -d
 ```
 
-### Lancement des test unitaires
+### Ajout de fixtures
+
+```bash
+symfony console doctrine:fixtures:load
+```
+## Lancement des test unitaires
 
 ```bash
 php bin/phpunit --testdox
