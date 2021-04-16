@@ -22,7 +22,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
-        
+
         // Création d'un admin
         $admin = new User();
         $password = $this->encoder->encodePassword($admin, 'pass');
@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
         // Création des fausses catégories
-        for ($j=0; $j < 5; $j++) {
+        for ($j = 0; $j < 5; $j++) {
             $categorie = new Categorie();
             $categorie->setNom($faker->word())
                 ->setSlug($faker->slug(2, false))
@@ -54,7 +54,7 @@ class AppFixtures extends Fixture
             $manager->persist($categorie);
 
             // Création de faux posts
-            for ($i=0; $i < 2; $i++) {
+            for ($i = 0; $i < 2; $i++) {
                 $post = new News();
                 $post->setTitre($faker->words(3, true))
                     ->setSlug($faker->slug(3, false))
@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
                 $manager->persist($post);
 
                 // Création de faux commentaires
-                for ($k=0; $k < 2; $k++) {
+                for ($k = 0; $k < 2; $k++) {
                     $commentaire = new Commentaire();
                     $commentaire->setUser($faker->randomElement([$user, $admin]))
                             ->setTitre($faker->words(3, true))
