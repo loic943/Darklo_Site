@@ -75,7 +75,7 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email non trouvé !');
+            throw new CustomUserMessageAuthenticationException('Email non trouvé ! ');
         }
 
         return $user;
@@ -101,7 +101,7 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }
 
     protected function getLoginUrl()
