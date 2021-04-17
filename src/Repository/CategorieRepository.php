@@ -31,15 +31,13 @@ class CategorieRepository extends ServiceEntityRepository
         ;
     }
 
-    /*
-    public function findOneBySomeField($value): ?Categorie
+    public function recupUneCategorie($slug): ?Categorie
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('c.slug = :val')
+            ->setParameter('val', $slug)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
 }

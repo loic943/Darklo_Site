@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie {{categorie.nom}}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+                <div class="text-center mt-3 mb-5">
+                    <h1>Bienvenue dans la catégorie "{{ categorie.nom }}" !</h1>
+                    <h5 class= "text-muted">{{ categorie.description}}</h5>
+                </div>
+            <hr>
+            <div class="mt-5">
+                <h3>News pour cette catégorie :</h3>
+                <hr>
+            </div>
+        
+            {% for post in posts %}
+                <div class="card mb-4">
+                  <img class="card-img-top" src="{{ post.image }}" alt="Card image cap">
+                  <div class="card-body">
+                    <h2 class="card-title"> {{ post.titre }} </h2>
+                    <p class="card-text"> {{ post.contenu|u.truncate (100, '...', false ) }} </p>
+                    <a href="/news/{{ post.slug }}/{{ post.id }}" class="btn btn-primary">Voir Plus &rarr;</a>
+                  </div>
+                  <div class="card-footer text-muted">
+                    Posté le {{ post.createdAt|date('d/m/Y') }} par
+                    <a href="#"> {{ post.user.pseudo }}</a>
+                  </div>
+                </div>
+            {% endfor %}
+            <div class= "d-flex justify-content-center">
+                {% do posts.setPageRange(3) %}
+                {{ knp_pagination_render(posts, 'base/pagination.html.twig') }}
+            </div>
+        
+            </div>
+                {% block sidebar %} 
+                  {{ parent() }}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
