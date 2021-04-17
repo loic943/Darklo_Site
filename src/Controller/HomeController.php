@@ -19,7 +19,7 @@ class HomeController extends AbstractController
         Request $requete,
         PaginatorInterface $paginator
     ): Response {
-        $data = $news->findAll();
+        $data = $news->recupNewsParDate();
 
         $pagination = $paginator->paginate(
             $data,

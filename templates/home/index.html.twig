@@ -14,6 +14,12 @@
         <!-- BDD Posts -->
         {% for post in posts %}
         <div class="card mb-4">
+
+          <div class="card-header ms-auto bg-white">
+            {% for categorie in post.categorie %}
+              <span class="badge bg-secondary">{{ categorie.nom }}</span>
+            {% endfor %}
+          </div>
           <img class="card-img-top" src="{{ post.image }}" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title"> {{ post.titre }} </h2>

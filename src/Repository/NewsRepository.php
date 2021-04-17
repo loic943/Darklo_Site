@@ -22,11 +22,10 @@ class NewsRepository extends ServiceEntityRepository
     /**
     * @return News[]
     */
-    public function recupTroisNews()
+    public function recupNewsParDate()
     {
         return $this->createQueryBuilder('n')
-            ->orderBy('n.id', 'DESC')
-            ->setMaxResults(3)
+            ->orderBy('n.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
