@@ -32,6 +32,18 @@ class NewsRepository extends ServiceEntityRepository
     }
 
     /**
+    * @return News[]
+    */
+    public function recupNewsParCategorie($id)
+    {
+        return $this->createQueryBuilder('n')
+            ->orderBy('n.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
     * @return News
     */
     public function recupUneNews($slug): ?News
