@@ -14,7 +14,6 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
     public function index(
-        CategorieRepository $categories,
         NewsRepository $news,
         Request $requete,
         PaginatorInterface $paginator
@@ -28,7 +27,6 @@ class HomeController extends AbstractController
         );
 
         return $this->render('home/index.html.twig', [
-            'categories' => $categories->recupAllCategories(),
             'posts' => $pagination,
         ]);
     }

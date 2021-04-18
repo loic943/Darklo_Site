@@ -57,8 +57,11 @@
           <div class="media mb-4">
             <img class="d-flex mr-3 rounded-circle" src="{{ commentaire.user.avatar }}" alt="">
             <div class="media-body">
-              <h5 class="mt-0">{{ commentaire.user.pseudo}}</h5>
-              {{ commentaire.contenu}}
+              <div class="d-flex justify-content">
+                <h5 class="mt-0"> {{ commentaire.user.pseudo }} </h5>
+                  <span class= "text-muted ms-auto"><small>Posté le: {{ commentaire.createdAt|date("d/m/Y \à H:i") }} </span></small>
+              </div>
+              {{ commentaire.contenu }}
             </div>
           </div>
         {% endfor %}

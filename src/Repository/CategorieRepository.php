@@ -20,17 +20,11 @@ class CategorieRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return Categorie[] Returns an array of Categorie objects
-    */
-    public function recupAllCategories()
-    {
-        return $this->createQueryBuilder('c')
-            ->orderBy('c.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
+     * recupUneCategorie
+     *
+     * @param string $slug
+     * @return Categorie|null
+     */
     public function recupUneCategorie($slug): ?Categorie
     {
         return $this->createQueryBuilder('c')

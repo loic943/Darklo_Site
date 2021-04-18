@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Repository\CategorieRepository;
-use App\Repository\NewsRepository;
-use Doctrine\ORM\Mapping\Id;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +14,6 @@ class CategorieController extends AbstractController
     #[Route('/categorie/{slug}', name: 'categorie')]
     public function index(
         CategorieRepository $categorieRepository,
-        NewsRepository $newsRepository,
         Request $request,
         PaginatorInterface $paginatorInterface,
         string $slug
@@ -31,7 +28,6 @@ class CategorieController extends AbstractController
         );
 
         return $this->render('categorie/index.html.twig', [
-            'categories' => $categorieRepository->findAll(),
             'categorie' => $categorie,
             'posts' => $pagintation,
         ]);
