@@ -10,12 +10,12 @@ use Twig\TwigFunction;
 class AppExtension extends AbstractExtension
 {
     private $categorieRepository;
-    
+
     public function __construct(CategorieRepository $categorieRepository)
     {
         $this->categorieRepository = $categorieRepository;
     }
-    
+
     public function getFilters(): array
     {
         return [
