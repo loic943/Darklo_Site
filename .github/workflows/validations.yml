@@ -41,7 +41,7 @@ jobs:
     - name: Run PHPStan
       run: phpstan analyse src
 
-Tests Unitaires:
+  Tests Unitaires:
     name: "Tests"
 
     runs-on: "ubuntu-latest"
