@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="text-center my-5">
+        <h1>Formulaire de contact</h1>
+        <hr class="my-5">
+        <h5 class="text-muted">Une question à poser, un renseigement à demander ? <br>
+        N'hésitez pas à nous contacter</h5>
+    </div>
+
+    <div class="bg-white p-5 contact-form">
+
+        {{ form_start(form) }}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div>
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">
+                {{ form_label(form.pseudo) }}
+            </label>
+            {{ form_widget(form.pseudo) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">
+                {{ form_label(form.email) }}
+            </label>
+            {{ form_widget(form.email) }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">
+                {{ form_label(form.contenu) }}
+            </label>
+            {{ form_widget(form.contenu) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(form.Envoyer) }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}
