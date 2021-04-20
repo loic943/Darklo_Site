@@ -2,8 +2,8 @@ name: "CI"
 
 on: [ push]
 jobs:
-  validation-PSR:
-    name: PSR-12 Code style
+  validation-PSR-CodeSniffer-PHPStan:
+    name: "validation du PHP"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -35,13 +35,9 @@ jobs:
     - name: Validate PSR-12 Code Style
       run: ~/.composer/vendor/bin/phpcs
 
-  Validation_CodeSniffer:
-    name: CodeSniffer
     - name: Install PHP_CodeSniffer composer package
       run: composer global require "squizlabs/php_codesniffer=*"
 
-Validation_PHPStan:
-    name: PHPStan
     - name: Run PHPStan
       run: phpstan analyse src
 
