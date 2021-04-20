@@ -73,8 +73,8 @@ jobs:
           key: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('**/composer.json') }}"
           restore-keys: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
 
-      - name: "Install dependencies with composer"
-        run: "./tools/composer update --no-ansi --no-interaction --no-progress"
+      - name: "Install dependencies"
+        run: "composer update --no-ansi --no-interaction --no-progress"
 
       - name: "Run tests with phpunit/phpunit"
         run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
