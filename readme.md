@@ -40,3 +40,13 @@ symfony console doctrine:fixtures:load
 ```bash
 php bin/phpunit --testdox
 ```
+
+## Production
+
+### Envoie des emails du formulaire de contact
+
+e-mails persistés en BDD, pouvant est envoyé avec la commande ('cron'):
+
+```bash
+symfony console app:envoie-contact
+```
