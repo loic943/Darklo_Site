@@ -38,14 +38,14 @@ symfony console doctrine:fixtures:load
 ## Lancement des test unitaires
 
 ```bash
-php bin/phpunit --testdox
+vendor/bin/phpunit --testdox
 ```
 
 ## Production
 
 ### Envoie des emails du formulaire de contact
 
-e-mails persistés en BDD, pouvant est envoyé avec la commande ('cron'):
+e-mails persistés en BDD, pouvant être envoyés avec la commande ('cron'):
 
 ```bash
 symfony console app:envoie-contact
