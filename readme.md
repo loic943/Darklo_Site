@@ -1,5 +1,8 @@
 # Site de Darklo
   ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/loic943/Darklo_Site/PHP%20CodeSniffer%20Validations?label=PHP%20Validations&style=plastic)
+[![codecov](https://codecov.io/gh/loic943/Darklo_Site/branch/main/graph/badge.svg)](https://codecov.io/gh/loic943/Darklo_Site)
+
+
 
 Test de site internet avec Symfony 5
 

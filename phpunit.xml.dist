@@ -18,13 +18,15 @@
       <directory>tests</directory>
     </testsuite>
   </testsuites>
+  <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/Entity</directory>
+        </whitelist>
+    </filter>
   <listeners>
     <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
   </listeners>
-  <!-- Run `composer require symfony/panther` before enabling this extension -->
-  <!--
     <extensions>
         <extension class="Symfony\Component\Panther\ServerExtension" />
     </extensions>
-    -->
 </phpunit>

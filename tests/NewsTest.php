@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\Entity\Categorie;
+use App\Entity\Commentaire;
 use App\Entity\News;
 use App\Entity\User;
 use DateTime;
@@ -34,7 +35,6 @@ class NewsTest extends TestCase
         $this->assertTrue($news->getPublie() === true);
         $this->assertTrue($news->getUser() === $user);
         $this->assertContains($categorie, $news->getCategorie());
-
     }
 
     public function testIsFalse()
@@ -53,14 +53,14 @@ class NewsTest extends TestCase
             ->setUser($user)
             ->addCategorie($categorie);
    
-            $this->assertFalse($news->getTitre() === 'false');
-            $this->assertFalse($news->getSlug() === 'false');
-            $this->assertFalse($news->getImage() === 'false');
-            $this->assertFalse($news->getContenu() === 'false');
-            $this->assertFalse($news->getCreatedAt() === new DateTime());
-            $this->assertFalse($news->getPublie() === false);
-            $this->assertFalse($news->getUser() === new User());
-            $this->assertNotContains(new Categorie(), $news->getCategorie());
+        $this->assertFalse($news->getTitre() === 'false');
+        $this->assertFalse($news->getSlug() === 'false');
+        $this->assertFalse($news->getImage() === 'false');
+        $this->assertFalse($news->getContenu() === 'false');
+        $this->assertFalse($news->getCreatedAt() === new DateTime());
+        $this->assertFalse($news->getPublie() === false);
+        $this->assertFalse($news->getUser() === new User());
+        $this->assertNotContains(new Categorie(), $news->getCategorie());
     }
 
     public function testIsEmpty()
@@ -75,5 +75,20 @@ class NewsTest extends TestCase
         $this->assertEmpty($news->getPublie());
         $this->assertEmpty($news->getUser());
         $this->assertEmpty($news->getCategorie());
+        $this->assertEmpty($news->getId());
+    }
+
+    public function testAddGetRemoveCommentaire()
+    {
+        $news = new News();
+        $commentaire = new Commentaire();
+
+        $this->assertEmpty($news->getCommentaires());
+
+        $news->addCommentaire($commentaire);
+        $this->assertContains($commentaire, $news->getCommentaires());
+
+        $news->removeCommentaire($commentaire);
+        $this->assertEmpty($news->getCommentaires());
     }
 }
