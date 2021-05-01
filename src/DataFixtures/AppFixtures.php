@@ -19,6 +19,7 @@ class AppFixtures extends Fixture
     {
         $this->encoder = $encoder;
     }
+
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
@@ -31,7 +32,8 @@ class AppFixtures extends Fixture
             ->setRoles(['admin'])
             ->setTel($faker->phoneNumber())
             ->setAdresse($faker->city())
-            ->setPassword($password);
+            ->setPassword($password)
+            ->setAvatar($faker->imageUrl(80, 80, 'human', true));
         $manager->persist($admin);
 
         // Création d'un user
@@ -42,8 +44,37 @@ class AppFixtures extends Fixture
             ->setRoles(['user'])
             ->setTel($faker->phoneNumber())
             ->setAdresse($faker->city())
-            ->setPassword($password);
+            ->setPassword($password)
+            ->setAvatar($faker->imageUrl(80, 80, 'human', true));
         $manager->persist($user);
+
+        // Création d'une catégorie pout les tests fonctionnels
+        $categorieTest = new Categorie();
+        $categorieTest->setNom('categorieTest')
+                ->setSlug('categorie-test')
+                ->setDescription('categorie de test');
+        $manager->persist($categorieTest);
+        
+        // Création d'un post pour les tests fonctionnels
+        $postTest = new News();
+        $postTest->setTitre('Titre Test')
+                ->setSlug('Titre-test-slug')
+                ->setImage('https://loremflickr.com/750/300?random=1')
+                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                ->setContenu('Faux contenu de test')
+                ->setPublie(1)
+                ->setUser($admin)
+                ->addCategorie($categorieTest);
+        $manager->persist($postTest);
+
+        //Création d'un commentaire pour les test fonctionnels
+        $commentaireTest = new Commentaire();
+        $commentaireTest->setUser($admin)
+            ->setTitre('Commentaire de test')
+            ->setContenu('Commentaire pour les tests fonctionnels')
+            ->setCreatedAt($faker->dateTimeBetween('-30 days', 'now'))
+            ->setNews($postTest);
+        $manager->persist($commentaireTest);
 
         // Création des fausses catégories
         for ($j = 0; $j < 5; $j++) {
