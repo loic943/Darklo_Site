@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\Entity\Categorie;
+use App\Entity\News;
 use PHPUnit\Framework\TestCase;
 
 class CategorieTest extends TestCase
@@ -40,5 +41,20 @@ class CategorieTest extends TestCase
         $this->assertEmpty($categorie->getNom());
         $this->assertEmpty($categorie->getSlug());
         $this->assertEmpty($categorie->getDescription());
+        $this->assertEmpty($categorie->getId());
+    }
+
+    public function testAddGetRemoveNews()
+    {
+        $categorie = new Categorie();
+        $news = new News();
+
+        $this->assertEmpty($categorie->getNews());
+
+        $categorie->addNews($news);
+        $this->assertContains($news, $categorie->getNews());
+
+        $categorie->removeNews($news);
+        $this->assertEmpty($categorie->getNews());
     }
 }

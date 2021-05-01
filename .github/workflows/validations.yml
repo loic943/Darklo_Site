@@ -49,12 +49,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version:
-          - "8.0"
-
-        coverage-driver:
-          - "xdebug"
-          - "xdebug3"
+        php-version: "8.0"
+        coverage-driver: "xdebug"
 
     steps:
       - name: "Checkout"

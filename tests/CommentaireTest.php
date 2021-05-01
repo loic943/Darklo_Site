@@ -28,7 +28,6 @@ class CommentaireTest extends TestCase
         $this->assertTrue($commentaire->getCreatedAt() === $date);
         $this->assertTrue($commentaire->getUser() === $user);
         $this->assertTrue($commentaire->getNews() === $news);
-
     }
 
     public function testIsFalse()
@@ -44,11 +43,11 @@ class CommentaireTest extends TestCase
             ->setUser($user)
             ->setNews($news);
    
-            $this->assertFalse($commentaire->getTitre() === 'false');
-            $this->assertFalse($commentaire->getContenu() === 'false');
-            $this->assertFalse($commentaire->getCreatedAt() === new DateTime());
-            $this->assertFalse($commentaire->getUser() === new User());
-            $this->assertFalse($commentaire->getNews() === new News());
+        $this->assertFalse($commentaire->getTitre() === 'false');
+        $this->assertFalse($commentaire->getContenu() === 'false');
+        $this->assertFalse($commentaire->getCreatedAt() === new DateTime());
+        $this->assertFalse($commentaire->getUser() === new User());
+        $this->assertFalse($commentaire->getNews() === new News());
     }
 
     public function testIsEmpty()
@@ -60,5 +59,6 @@ class CommentaireTest extends TestCase
         $this->assertEmpty($commentaire->getCreatedAt());
         $this->assertEmpty($commentaire->getUser());
         $this->assertEmpty($commentaire->getNews());
+        $this->assertEmpty($commentaire->getId());
     }
 }
