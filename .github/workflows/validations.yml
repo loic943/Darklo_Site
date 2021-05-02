@@ -47,7 +47,7 @@ jobs:
     runs-on: "ubuntu-latest"
     services:
       mysql:
-        image: mysql:lastest
+        image: mysql:8.0
         ports:
           - 49161
 
