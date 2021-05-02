@@ -49,7 +49,7 @@ jobs:
       mysql:
         image: mysql:8.0
         ports:
-          - 49161
+          - 3306
 
     strategy:
       fail-fast: false
