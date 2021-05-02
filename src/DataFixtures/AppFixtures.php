@@ -54,7 +54,7 @@ class AppFixtures extends Fixture
                 ->setSlug('categorie-test')
                 ->setDescription('categorie de test');
         $manager->persist($categorieTest);
-        
+
         // Création d'un post pour les tests fonctionnels
         $postTest = new News();
         $postTest->setTitre('Titre Test')
