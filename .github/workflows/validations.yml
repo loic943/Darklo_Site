@@ -46,6 +46,16 @@ jobs:
 
     runs-on: "ubuntu-latest"
 
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - "8.0"
+
+        coverage-driver:
+          - "xdebug"
+          - "xdebug3"
+
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
@@ -53,8 +63,15 @@ jobs:
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
         with:
-          php-version: "8.0"
-          coverage: "xdebug"
+          php-version: "${{ matrix.php-version }}"
+          coverage: "${{ matrix.coverage-driver }}"
+
+      - name: "Cache dependencies installed with composer"
+        uses: "actions/cache@v2"
+        with:
+          path: "~/.composer/cache"
+          key: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('**/composer.json') }}"
+          restore-keys: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
