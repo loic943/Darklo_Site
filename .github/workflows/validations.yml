@@ -45,6 +45,11 @@ jobs:
     name: "Tests Unitaires"
 
     runs-on: "ubuntu-latest"
+    services:
+      mysql:
+        image: mysql:lastest
+        ports:
+          - 49161
 
     strategy:
       fail-fast: false
