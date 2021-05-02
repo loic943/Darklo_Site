@@ -12,6 +12,6 @@ class HomeTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        //$this->assertSelectorTextContains('h1', 'Bienvenue');
+        $this->assertSelectorTextContains('h1', 'Bienvenue sur le blog de D@rklo');
     }
 }
