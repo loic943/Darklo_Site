@@ -81,7 +81,8 @@ jobs:
 
       - name: "Run tests with phpunit/phpunit"
         run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
-        env: DATABASE_URL="mysql://root:password@127.0.0.1:49164/main_test?serverVersion=5.7"
+        env: 
+          DATABASE_URL: "mysql://root:password@127.0.0.1:49164/main_test?serverVersion=5.7"
 
       - name: "Send code coverage report to Codecov.io"
         env:
