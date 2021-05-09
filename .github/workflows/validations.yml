@@ -162,8 +162,14 @@ jobs:
         run: |
           php bin/console doctrine:schema:update --force || echo "No migrations found or schema update failed"
           php bin/console doctrine:migrations:migrate || echo "No migrations found or migration failed"
+          php bin/console doctrine:fixtures:load
         env:
           DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony
       - name: Run Tests
         #run: php bin/phpunit --coverage-text
         run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
+              
+      - name: "Send code coverage report to Codecov.io"
+        env:
+          CODECOV_TOKEN: "bf364162-9acf-47f1-924f-2aa5c93f5d87"
+        run: "bash <(curl -s https://codecov.io/bash) || true"
