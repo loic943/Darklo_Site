@@ -76,8 +76,7 @@ jobs:
           key: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('**/composer.json') }}"
           restore-keys: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
       
-      - name: "Install Mysql"
-        uses: mirromutth/mysql-action@v1.1
+      - name: "Setup Mysql"
         env:
           DATABASE_URL: "mysql://root:password@127.0.0.1:3306/main_test?serverVersion=5.7"
         run: |
