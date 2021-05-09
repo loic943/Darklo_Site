@@ -79,7 +79,9 @@ jobs:
       - name: "Setup Mysql"
         env:
           DATABASE_URL: "mysql://root:@127.0.0.1:3306/main_test?serverVersion=5.7"
-        run: sudo systemctl start mysql
+        run: |
+          sudo systemctl start mysql
+          mysql -u root
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
