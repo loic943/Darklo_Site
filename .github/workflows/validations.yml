@@ -86,11 +86,14 @@ jobs:
           sudo /etc/init.d/mysql start
           mysql --version
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
-          php bin/console doctrine:migrations:migrate
-          php bin/console doctrine:fixtures:load
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
+
+      - name: "Run migration"
+        run: |
+          php bin/console doctrine:migrations:migrate
+          php bin/console doctrine:fixtures:load
 
       - name: "Run tests with phpunit/phpunit"
         run: "APP_ENV=test vendor/bin/phpunit --coverage-clover=coverage.xml"
