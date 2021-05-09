@@ -81,6 +81,7 @@ jobs:
           sudo /etc/init.d/mysql start
           mysql --version
           mysql -uroot -proot
+          show databases;
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
