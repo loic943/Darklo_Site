@@ -46,18 +46,6 @@ jobs:
 
     runs-on: "ubuntu-latest"
 
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ALLOW_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_USER: root
-          MYSQL_DATABASE: main
-        ports:
-          - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     strategy:
       fail-fast: false
       matrix:
@@ -89,9 +77,10 @@ jobs:
           restore-keys: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
       
       - name: "Setup Mysql"
-        env:
-          PORT: ${{ job.services.mysql.ports[3306] }}
-        run: mysql --version
+
+        run: |
+          mysql --version
+          mysql -uroot -proot
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
