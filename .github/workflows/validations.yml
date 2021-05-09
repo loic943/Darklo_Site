@@ -77,8 +77,6 @@ jobs:
           restore-keys: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
       
       - name: "Setup Mysql"
-        env:
-          DATABASE_URL: "mysql://root:@127.0.0.1:3306/main_test?serverVersion=5.7"
         run: |
           sudo systemctl start mysql
           systemctl status mysql.service
