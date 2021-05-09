@@ -77,11 +77,15 @@ jobs:
           restore-keys: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
       
       - name: "Setup Mysql"
+        env:
+          DB_DATABASE: main
+          DB_USER: root
+          DB_PASSWORD: root
+          DATABASE_URL: "mysql://root:root@127.0.0.1:3306/main"
         run: |
           sudo /etc/init.d/mysql start
           mysql --version
-          mysql -uroot -proot
-          show databases;
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
