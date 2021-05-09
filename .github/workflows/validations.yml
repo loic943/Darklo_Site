@@ -78,8 +78,9 @@ jobs:
       
       - name: "Setup Mysql"
         run: |
+          sudo /etc/init.d/mysql start
           mysql --version
-          mysql -hlocalhost -P3306 -uroot -proot
+          mysql -uroot -proot
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
