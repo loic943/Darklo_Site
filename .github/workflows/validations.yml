@@ -80,7 +80,6 @@ jobs:
         env:
           DATABASE_URL: "mysql://root:@127.0.0.1:3306/main_test?serverVersion=5.7"
         run: |
-          sudo /etc/init.d/mysql start
           mysql -u root
           mysql -e 'CREATE DATABASE main;'
           "APP_ENV=test php bin/console doctrine:database:create"
