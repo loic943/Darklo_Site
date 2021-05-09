@@ -111,11 +111,50 @@
     # - name: Run test suite
     #   run: composer run-script test
 
-name: Testing Symfony with MySQL
+name: CI D@rklo_Site
 on: [push]
 jobs:
-  symfony:
-    name: Symfony (PHP ${{ matrix.php-versions }})
+  validation-PSR-CodeSniffer-PHPStan:
+    name: "validation du PHP"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with: 
+          php-version: '8.0.3'
+          tools: phpstan, composer
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: echo "::set-output name=dir::$(composer config cache-file-dir)"
+      
+    - name: Cache Composer Dependencies 
+      uses: actions/cache@v2
+      with:
+        path: ~/.composer/cache/
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Install PHP_CodeSniffer composer package
+      run: composer global require "squizlabs/php_codesniffer=*"
+
+    - name: Validate PSR-12 Code Style
+      run: ~/.composer/vendor/bin/phpcs
+
+    - name: Run PHPStan
+      run: phpstan analyse src
+
+  tests-unitaires:
+    name: "Tes Unitaires"
     runs-on: ubuntu-latest
     services:
       mysql:
