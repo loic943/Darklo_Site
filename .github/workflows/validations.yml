@@ -75,6 +75,17 @@ jobs:
           path: "~/.composer/cache"
           key: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('**/composer.json') }}"
           restore-keys: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
+      
+      - name: "Install Mysql"
+        uses: mirromutth/mysql-action@v1.1
+        env:
+          DATABASE_URL: "mysql://root:password@127.0.0.1:3306/main_test?serverVersion=5.7"
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE main;' -u root -p password
+          "APP_ENV=test php bin/console doctrine:database:create"
+          "APP_ENV=test php bin/console doctrine:migrations:migrate"
+          "APP_ENV=test php bin/console doctrine:fixtures:load"
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
