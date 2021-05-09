@@ -51,7 +51,6 @@ jobs:
         image: mysql:5.7
         ports:
           - 3306
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
         env:
           MYSQL_ALLOW_PASSWORD: yes
           MYSQL_USER: root
@@ -90,11 +89,7 @@ jobs:
       - name: "Setup Mysql"
         env:
           PORT: ${{ job.services.mysql.ports[3306] }}
-        run: |
-          while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
-            sleep 1
-          done
-          mysql --version
+        run: mysql --version
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
