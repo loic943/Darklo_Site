@@ -108,22 +108,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.3', '7.4']
+        php-versions: ['7.4', '8.0']
       steps:
-        - name: Checkout
+        - name: "Checkout"
           uses: actions/checkout@v2
-        - name: Setup PHP, with composer and extensions
+        - name: "Setup PHP, with composer and extensions"
           uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
           with:
             php-version: ${{ matrix.php-versions }}
             extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, mysql
             coverage: xdebug #optional
-        - name: Start mysql service
+        - name: "Start mysql service"
           run: sudo /etc/init.d/mysql start
-        - name: Get composer cache directory
+        - name: "Get composer cache directory"
           id: composer-cache
           run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-        - name: Cache composer dependencies
+        - name: "Cache composer dependencies"
           uses: actions/cache@v2
           with:
             path: ${{ steps.composer-cache.outputs.dir }}
@@ -131,12 +131,12 @@ jobs:
             # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
             key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
             restore-keys: ${{ runner.os }}-composer-
-        - name: Install Composer dependencies
+        - name: "Install Composer dependencies"
           run: |
             composer require --dev symfony/orm-pack symfony/phpunit-bridge
             composer install --no-progress --prefer-dist --optimize-autoloader
             php bin/phpunit install
-        - name: Run Migration
+        - name: "Run Migration"
           run: |
             php bin/console doctrine:schema:update --force || echo "No migrations found or schema update failed"
             php bin/console doctrine:migrations:migrate || echo "No migrations found or migration failed"
