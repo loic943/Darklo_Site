@@ -80,6 +80,7 @@ jobs:
         run: |
           sudo systemctl start mysql
           systemctl status mysql.service
+          mysql -u root
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
