@@ -79,13 +79,7 @@ jobs:
       - name: "Setup Mysql"
         env:
           DATABASE_URL: "mysql://root:@127.0.0.1:3306/main_test?serverVersion=5.7"
-        run: |
-          mysql -h 127.0.0.1 -P 3306 -u root
-          "CREATE DATABASE main;"
-          "quit"
-          "APP_ENV=test php bin/console doctrine:database:create"
-          "APP_ENV=test php bin/console doctrine:migrations:migrate"
-          "APP_ENV=test php bin/console doctrine:fixtures:load"
+        run: mysql -V
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
