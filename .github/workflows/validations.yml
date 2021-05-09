@@ -78,9 +78,8 @@ jobs:
       
       - name: "Setup Mysql"
         run: |
-          sudo apt-get install mysql-server
           mysql --version
-          mysql -uroot -proot
+          mysql -hlocalhost -P3306 -uroot -proot
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
