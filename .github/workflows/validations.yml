@@ -46,6 +46,14 @@ jobs:
 
     runs-on: "ubuntu-latest"
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_PASSWORD: yes
+          MYSQL_USER: root
+          MYSQL_DATABASE: main
+
     strategy:
       fail-fast: false
       matrix:
@@ -77,10 +85,7 @@ jobs:
           restore-keys: "php${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
       
       - name: "Setup Mysql"
-        run: |
-          sudo systemctl start mysql
-          systemctl status mysql.service
-          sudo mysql -uroot
+        run: mysql --version
 
       - name: "Install dependencies"
         run: "composer update --no-ansi --no-interaction --no-progress"
