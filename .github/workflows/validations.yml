@@ -94,7 +94,8 @@ jobs:
       - name: Run Tests
         #run: php bin/phpunit --coverage-text
         run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
-              
+        env:
+          DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony      
       - name: "Send code coverage report to Codecov.io"
         env:
           CODECOV_TOKEN: "bf364162-9acf-47f1-924f-2aa5c93f5d87"
