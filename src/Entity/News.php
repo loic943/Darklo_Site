@@ -6,6 +6,7 @@ use App\Repository\NewsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
@@ -25,6 +26,7 @@ class News
     private $titre;
 
     /**
+     * @Gedmo\Slug(fields={"titre"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
@@ -35,6 +37,7 @@ class News
     private $image;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -93,13 +96,6 @@ class News
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -115,13 +111,6 @@ class News
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getContenu(): ?string

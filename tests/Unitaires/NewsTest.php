@@ -19,19 +19,15 @@ class NewsTest extends TestCase
         $user = new User();
 
         $news->setTitre('titre')
-            ->setSlug('slug')
             ->setImage('image')
             ->setContenu('contenu')
-            ->setCreatedAt($date)
             ->setPublie(true)
             ->setUser($user)
             ->addCategorie($categorie);
    
         $this->assertTrue($news->getTitre() === 'titre');
-        $this->assertTrue($news->getSlug() === 'slug');
         $this->assertTrue($news->getImage() === 'image');
         $this->assertTrue($news->getContenu() === 'contenu');
-        $this->assertTrue($news->getCreatedAt() === $date);
         $this->assertTrue($news->getPublie() === true);
         $this->assertTrue($news->getUser() === $user);
         $this->assertContains($categorie, $news->getCategorie());
@@ -45,10 +41,8 @@ class NewsTest extends TestCase
         $user = new User();
 
         $news->setTitre('titre')
-            ->setSlug('slug')
             ->setImage('image')
             ->setContenu('contenu')
-            ->setCreatedAt($date)
             ->setPublie(true)
             ->setUser($user)
             ->addCategorie($categorie);

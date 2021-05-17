@@ -13,11 +13,9 @@ class CategorieTest extends TestCase
         $categorie = new Categorie();
 
         $categorie->setNom('nom')
-                ->setSlug('slug')
                 ->setDescription('description');
         
         $this->assertTrue($categorie->getNom() === 'nom');
-        $this->assertTrue($categorie->getSlug() === 'slug');
         $this->assertTrue($categorie->getDescription() === 'description');
     }
 
@@ -26,7 +24,6 @@ class CategorieTest extends TestCase
         $categorie = new Categorie();
 
         $categorie->setNom('nom')
-                ->setSlug('slug')
                 ->setDescription('description');
    
         $this->assertFalse($categorie->getNom() === 'false');
