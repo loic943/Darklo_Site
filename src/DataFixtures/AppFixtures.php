@@ -54,16 +54,13 @@ class AppFixtures extends Fixture
         // Création d'une catégorie pout les tests fonctionnels
         $categorieTest = new Categorie();
         $categorieTest->setNom('categorieTest')
-                ->setSlug('categorie-test')
                 ->setDescription('categorie de test');
         $manager->persist($categorieTest);
 
         // Création d'un post pour les tests fonctionnels
         $postTest = new News();
         $postTest->setTitre('Titre Test')
-                ->setSlug('Titre-test-slug')
                 ->setImage('https://loremflickr.com/750/300?random=1')
-                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                 ->setContenu('Faux contenu de test')
                 ->setPublie(1)
                 ->setUser($admin)
@@ -83,7 +80,6 @@ class AppFixtures extends Fixture
         for ($j = 0; $j < 5; $j++) {
             $categorie = new Categorie();
             $categorie->setNom($faker->word())
-                ->setSlug($faker->slug(2, false))
                 ->setDescription($faker->words(5, true));
             $manager->persist($categorie);
 
@@ -91,9 +87,7 @@ class AppFixtures extends Fixture
             for ($i = 0; $i < 2; $i++) {
                 $post = new News();
                 $post->setTitre($faker->words(3, true))
-                    ->setSlug($faker->slug(3, false))
                     ->setImage('https://loremflickr.com/750/300?random=' . $i)
-                    ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                     ->setContenu($faker->text(400))
                     ->setPublie($faker->boolean())
                     ->setUser($admin)
